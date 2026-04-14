@@ -27,6 +27,7 @@ pm install Change Case by isnandar1471
 - Path Case
 - Sentence Case
 - Snake Case
+- WordPress-style class name
 - Lower Case
 - Locale Lower Case
 - Lower Case First

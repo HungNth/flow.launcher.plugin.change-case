@@ -19,6 +19,10 @@ const parseAsBoolean = (value: unknown): boolean => {
   return false;
 }
 
+const wordPressStyleClassName = (value: string): string => {
+  return Case.capitalCase(value).replace(/ /g, "_");
+}
+
 flow.on("query", (params) => {
   const paramValue: string = params.toString();
 
@@ -67,6 +71,19 @@ flow.on("query", (params) => {
       params: [Case.capitalCase(paramValue)],
       dontHideAfterAction: dontHideAfterAction,
       score: 20,
+    });
+  }
+
+  if (parseAsBoolean(flow.settings.wordpressStyleClassName)) {
+    const wordPressStyleClassNameResult = wordPressStyleClassName(paramValue);
+
+    results.push({
+      title: wordPressStyleClassNameResult,
+      subtitle: "WordPress-style class name",
+      method: DO_COPY,
+      params: [wordPressStyleClassNameResult],
+      dontHideAfterAction: dontHideAfterAction,
+      score: 100,
     });
   }
 
